@@ -1,0 +1,54 @@
+type Query {
+  hello: String!
+  product: Product!
+  greeting(name: String!): String!
+  me(id: ID!): User
+  users: [User!]!
+  posts: [Post]!
+}
+
+type Mutation {
+  createUser(name: String!, email: String!, age: Int): User!
+  createPost(
+    title: String!
+    body: String!
+    published: Boolean!
+    author: ID!
+  ): Post!
+  deleteUser(id: ID!): User!
+  updateUser(id: ID!, data: UpdateUserInput!): User!
+}
+
+type Subscription {
+  count: Int!
+}
+
+type Product {
+  id: ID!
+  title: String!
+  price: Float!
+  releaseYear: Int
+  rating: Float
+  inStock: Boolean!
+}
+
+type User {
+  id: ID!
+  name: String!
+  age: Int
+  posts: [Post]!
+}
+
+type Post {
+  id: ID!
+  title: String!
+  body: String!
+  published: Boolean!
+  author: User
+}
+
+input UpdateUserInput {
+  name: String
+  email: String
+  age: Int
+}
